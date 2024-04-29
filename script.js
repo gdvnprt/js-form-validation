@@ -43,32 +43,35 @@ function showError() {
   }
 
   // Set the styling appropriately
-  emailError.className = "error active";
+  emailError.className = "error";
 }
 
 const password = document.querySelector("#password");
 const pwConfirm = document.querySelector("#pw-confirm");
-const pwError = document.querySelector("#password + #pw-confirm + #pw-match");
+const pwError = document.querySelector("#pw-match");
 
 password.addEventListener("input", (event) => {
-  confirmPW();
+  if (password.value && pwConfirm.value) {
+    confirmPW()
+  };
 });
 
 pwConfirm.addEventListener("input", (event) => {
-  confirmPW();
+  if (password.value && pwConfirm.value) {
+    confirmPW()
+  };
 });
 
 function confirmPW() {
-  if (document.querySelector('#password').value ==
-  document.querySelector('#pw-confirm').value) {
-  document.querySelector('#pw-match').style.color = 'green';
-  document.querySelector('#password').style.border = '1px solid green';
-  document.querySelector('#pw-confirm').style.border = '1px solid green';
-  document.querySelector('#pw-match').innerHTML = 'Passwords match';
+  if (password.value == pwConfirm.value) {
+    pwError.className = "is-valid"
+    password.className = "is-valid"
+    pwConfirm.className = "is-valid"
+    pwError.innerHTML = 'Passwords match';
 } else {
-  document.querySelector('#pw-match').style.color = '#E60026';
-  document.querySelector('#password').style.border = '1px solid #E60026';
-  document.querySelector('#pw-confirm').style.border = '1px solid #E60026';
-  document.querySelector('#pw-match').innerHTML = '* Passwords do not match';
+    pwError.className = "not-valid";
+    password.className = "not-valid"
+    pwConfirm.className = "not-valid"
+    pwError.innerHTML = '* Passwords do not match';
   }
 }
