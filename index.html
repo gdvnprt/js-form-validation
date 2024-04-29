@@ -37,7 +37,8 @@
 
                     <div class="input-container">
                         <label for="zip">Zip Code:</label>
-                        <input type="text" id="zip" name="zip" required>
+                        <input type="text" id="zip" name="zip" required minlength="5">
+                        <p id="zip-error"></p>
                     </div>
                 
                     <button type="submit" id="submit">Submit</button>

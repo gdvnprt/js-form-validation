@@ -64,14 +64,29 @@ pwConfirm.addEventListener("input", (event) => {
 
 function confirmPW() {
   if (password.value == pwConfirm.value) {
-    pwError.className = "is-valid"
-    password.className = "is-valid"
-    pwConfirm.className = "is-valid"
+    pwError.className = "is-valid";
+    password.className = "is-valid";
+    pwConfirm.className = "is-valid";
     pwError.innerHTML = 'Passwords match';
 } else {
     pwError.className = "not-valid";
-    password.className = "not-valid"
-    pwConfirm.className = "not-valid"
+    password.className = "not-valid";
+    pwConfirm.className = "not-valid";
     pwError.innerHTML = '* Passwords do not match';
-  }
-}
+  };
+};
+
+const zipCode = document.querySelector("#zip");
+const zipError = document.querySelector("#zip-error");
+
+zipCode.addEventListener("input", (event) => {
+  if (isNaN(zipCode.value)) {
+    zipCode.className = "not-valid";
+    zipError.className = "not-valid";
+    zipError.innerHTML = "Only numbers allowed!";
+  } else {
+    zipCode.className = "is-valid";
+    zipError.className = "is-valid";
+    zipError.innerHTML = "";
+  };
+});
