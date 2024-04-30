@@ -68,11 +68,13 @@ function confirmPW() {
     password.className = "is-valid";
     pwConfirm.className = "is-valid";
     pwError.innerHTML = 'Passwords match';
+    pwConfirm.validity.valid = true;
 } else {
     pwError.className = "not-valid";
     password.className = "not-valid";
     pwConfirm.className = "not-valid";
     pwError.innerHTML = '* Passwords do not match';
+    pwConfirm.validity.valid = false;
   };
 };
 
@@ -84,9 +86,25 @@ zipCode.addEventListener("input", (event) => {
     zipCode.className = "not-valid";
     zipError.className = "not-valid";
     zipError.innerHTML = "Only numbers allowed!";
+    zipCode.validity.valid = false;
   } else {
     zipCode.className = "is-valid";
     zipError.className = "is-valid";
     zipError.innerHTML = "";
+    zipCode.validity.valid = true;
+  };
+});
+
+const country = document.querySelector("#country");
+const countryError = document.querySelector("#country-error");
+let regex = /^[a-zA-Z]+$/;
+
+country.addEventListener("input", (event) => {
+  if (regex.test(country.value)) {
+    country.validity.valid = true;
+    countryError.innerHTML = "";
+  } else {
+    country.validity.valid = false;
+    countryError.innerHTML = "Countries don't have numbers in them!";
   };
 });
